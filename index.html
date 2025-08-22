@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .cardborder {
+            border: none;
+        }
+
+        .submitBtn {
+            margin-top: 30px;
+        }
+
+        .fieldsinput {
+            font-family: "Ubuntu", sans-serif;
+            background: hsla(228, 100%, 84%, 0.281) !important;
+        }
+
+        .fieldsinput:hover {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+
+        .fieldsinput:focus {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+.activestep{
+     background-color: hsl(206, 94%, 87%) !important;
+            color: hsl(213, 96%, 18%) !important;
+            border-color: hsl(206, 94%, 87%) !important;
+}
+        .Mode {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid rgba(0, 0, 0, 0.29);
+            border-radius: 10px;
+            justify-content: left;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .Mode .icon {
+            width: 35px;
+            height: 35px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .thankyou {
+            width: 70px;
+            height: 70px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Mode:hover {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+
+        .Mode:active {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+
+        .Mode .price {
+            font-weight: 700;
+            color: hsl(213, 96%, 18%);
+            align-items: start;
+            padding-top: 30px;
+        }
+
+        .fontIcon {
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.404);
+            font-size: 12px;
+        }
+
+        .spanText {
+            font-weight: 400;
+            color: rgb(159, 161, 163);
+            font-size: 14px;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .fontHeading {
+            font-family: "Ubuntu", sans-serif;
+            color: hsl(213, 96%, 18%);
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .leftSide {
+            background-image: url('./assets/images/bg-sidebar-desktop.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .leftSideMobile {
+            background-image: url('./assets/images/bg-sidebar-mobile.svg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 200px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .customButton.btn {
+            border: solid white 2px;
+            border-radius: 50%;
+            color: white;
+            font-weight: 700;
+            background: hsl(243, 100%, 62%);
+        }
+
+        .active-step {
+            background-color: hsl(206, 94%, 87%) !important;
+            color: hsl(213, 96%, 18%) !important;
+            border-color: hsl(206, 94%, 87%) !important;
+        }
+
+        .rightSide {
+            padding: 30px;
+            border: none !important;
+        }
+
+        .planselect {
+            background: hsla(228, 100%, 84%, 0.188);
+            cursor: pointer;
+        }
+
+        .planselect:hover {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+
+        .activePlanselect {
+            border: 2px solid hsl(243, 100%, 62%);
+            background-color: hsla(228, 100%, 84%, 0.3);
+        }
+
+        .btnSelect {
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 40px;
+            cursor: pointer;
+        }
+
+        .calculated {
+            color: hsl(213, 96%, 18%);
+            font-weight: 700;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .btnNext {
+            margin-top: 60px;
+            cursor: pointer;
+        }
+        .foarmlabels{
+            color:  hsl(213, 96%, 18%);
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 400;
+        }
+
+        .btnNextDesign {
+            background: hsl(213, 96%, 18%);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+        }
+         .btnNextDesign:hover{
+            background: hsl(213, 97%, 15%);
+            color: white !important;
+        }
+
+        .btnNextDesign:focus{
+            background: hsl(213, 97%, 15%);
+            color: white !important;
+        }
+
+        .btnNextDesign:disabled {
+            background: hsl(229, 24%, 87%);
+            cursor: not-allowed;
+        }
+
+        .resultcolor {
+            color: hsl(213, 96%, 18%);
+            padding: 10px;
+        }
+
+        .switchDesgin {
+            background: hsla(228, 100%, 84%, 0.173);
+            margin-top: 40px;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            color: hsl(213, 96%, 18%);
+            font-weight: 700;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .pickAddon {
+            padding-right: 20px;
+            margin-top: 20px;
+        }
+
+        .addOnscolor {
+            background: hsla(228, 100%, 84%, 0.171);
+            padding-right: 30px;
+            border: 2px solid rgba(0, 0, 0, 0.096);
+        }
+
+        .addOnscolor:hover {
+            border: 2px solid hsl(243, 100%, 62%);
+        }
+
+        .activeAddonscolor {
+            border: 2px solid hsl(243, 100%, 62%);
+            background-color: hsla(228, 100%, 84%, 0.3);
+        }
+
+        .selectCheck {
+            background: hsl(243, 100%, 62%) !important;
+            color: white;
+        }
+
+        .total {
+            padding: 10px;
+            color: rgba(0, 0, 0, 0.247);
+            font-weight: 100;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .totalamount {
+            text-align: end;
+            justify-content: end;
+            color: hsl(243, 100%, 62%) !important;
+            font-weight: 700;
+        }
+
+        .freeMonths {
+            color: hsla(213, 96%, 18%, 0.703);
+            font-weight: 400;
+            font-size: small;
+        }
+
+        .checkBoxText {
+            text-align: start;
+            border: none !important;
+            background: rgba(255, 255, 255, 0.844);
+            font-weight: 700;
+            color: hsl(213, 96%, 18%);
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .results {
+            background: rgba(11, 11, 11, 0.051) !important;
+            border-radius: 10px;
+            padding: 10px;
+            color: hsl(213, 96%, 18%);
+            font-weight: 700;
+            margin-top: 30px;
+        }
+
+        .submission {
+            padding: 10px;
+            padding-bottom: 120px;
+        }
+
+        .bill {
+            color: hsl(243, 100%, 62%);
+            font-weight: 700;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .goBackBtn {
+            color: rgba(0, 0, 0, 0.381);
+            font-weight: 700;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+        .addon-option{
+            text-align: left;
+            padding-left: 20px !important;
+            padding: 15px;
+        }
+
+
+        .goBackBtn:hover {
+            color: hsl(213, 96%, 18%);
+        }
+
+        .maincard {
+            padding: 1px;
+        }
+
+        .mobile-btn-container {
+            display: none;
+            justify-content: space-between;
+            width: 100%;
+            padding: 15px;
+            background: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .addonsContainer {
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .maincard {
+                padding: 0 !important;
+            }
+
+            .mobile-btn-container {
+                display: flex !important;
+            }
+
+            .mobileMargin {
+                margin-top: -80px;
+                padding-bottom: 50px;
+            }
+
+            .rightSide {
+                padding: 20px;
+            }
+
+            .btnSelect {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .fontHeading {
+                font-size: 24px;
+            }
+
+            .Mode {
+                flex-direction: row;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .Mode .price {
+                padding-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #efe2e2a0;">
+    <div
+        class="container-fluid vh-100 maincard d-flex flex-column justify-content-md-center justify-content-start align-items-center">
+
+        <div
+            class="card w-100 py-5 leftSideMobile d-flex d-md-none flex-md-column flex-row justify-content-md-start justify-content-center">
+            <div class="d-flex flex-row justify-content-center mb-3">
+                <div class="me-3">
+                    <button class="btn customButton step-indicator" id="stepBtn1" data-step="1">1</button>
+                </div>
+                <div class="me-3">
+                    <button class="btn customButton step-indicator" id="stepBtn2" data-step="2">2</button>
+                </div>
+                <div class="me-3">
+                    <button class="btn customButton step-indicator" id="stepBtn3" data-step="3">3</button>
+                </div>
+                <div class="me-3">
+                    <button class="btn customButton step-indicator" id="stepBtn4" data-step="4">4</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center w-100">
+            <div class="col-md-7 ">
+                <div class="card mobileMargin" style="border-radius: 20px;">
+                    <div class="container-fluid">
+                        <div class="row align-items-stretch">
+
+                            <div class="col-md-4 py-3 d-flex">
+                                <div
+                                    class="card w-100 py-5 leftSide d-none d-md-flex flex-md-column flex-row justify-content-md-start justify-content-center">
+                                    <div class="d-flex flex-row mb-3">
+                                        <div class="me-3">
+                                            <button class="btn customButton step-indicator" id="desktopStepBtn1"
+                                                data-step="1">1</button>
+                                        </div>
+                                        <div class="d-none d-md-flex flex-column">
+                                            <span class="spanText">STEP 1</span>
+                                            <span class="fw-bold">YOUR INFO</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row mb-3">
+                                        <div class="me-3">
+                                            <button class="btn customButton step-indicator" id="desktopStepBtn2"
+                                                data-step="2">2</button>
+                                        </div>
+                                        <div class="d-none d-md-flex flex-column">
+                                            <span class="spanText">STEP 2</span>
+                                            <span class="fw-bold">SELECT PLAN</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row mb-3">
+                                        <div class="me-3">
+                                            <button class="btn customButton step-indicator" id="desktopStepBtn3"
+                                                data-step="3">3</button>
+                                        </div>
+                                        <div class="d-none d-md-flex flex-column">
+                                            <span class="spanText">STEP 3</span>
+                                            <span class="fw-bold">ADD-ONS</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row mb-3">
+                                        <div class="me-3">
+                                            <button class="btn customButton step-indicator" id="desktopStepBtn4"
+                                                data-step="4">4</button>
+                                        </div>
+                                        <div class="d-none d-md-flex flex-column">
+                                            <span class="spanText">STEP 4</span>
+                                            <span class="fw-bold">SUMMARY</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 rightSide" id="sheet1">
+                                <div class="card cardborder">
+                                    <h1 class="fontHeading">Personal Info</h1>
+                                    <span class="spanText">
+                                        Please provide your name, email, and phone number
+                                    </span>
+                                </div>
+
+                                <form class="foarmlabels" id="personalInfoForm">
+                                    <div class="mb-3">
+                                        <label for="Name" class="form-label">Name</label>
+                                        <input type="text" class="form-control fieldsinput" id="nameinput"
+                                            placeholder="eg. Abdul Moeed" aria-describedby="emailHelp">
+                                        <div class="text-danger small mt-1 d-none" id="nameError">Please enter a valid
+                                            name</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                        <input type="email" class="form-control fieldsinput" id="inputEmail1"
+                                            placeholder="moeed1231@gmail.com" aria-describedby="emailHelp">
+                                        <div class="text-danger small mt-1 d-none" id="emailError">Please enter a valid
+                                            email address</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phoneno" class="form-label">Phone no</label>
+                                        <input type="number" class="form-control fieldsinput" id="enterPhone"
+                                            placeholder="03201406301" aria-describedby="emailHelp">
+                                        <div class="text-danger small mt-1 d-none" id="phoneError">Please enter a valid
+                                            phone number</div>
+                                    </div>
+
+                                    <div class="d-md-flex d-none justify-content-end">
+                                        <button type="button" class="btn btnNextDesign submitBtn"
+                                            id="desktopNextBtn">Next Page</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-md-8 rightSide d-none" id="sheet2">
+                                <div class="card cardborder">
+                                    <h1 class="fontHeading">Select Your Plan</h1>
+                                    <span class="spanText">
+                                        You have option of monthly and yearly billing
+                                    </span>
+                                    <div class="d-grid btnSelect gap-3">
+                                        <div class="Mode plan-card addOnscolor" data-plan="arcade">
+                                            <img src="./assets/images/icon-arcade.svg" alt="Arcade Icon" class="icon">
+                                            <div class="price">Arcade</div>
+                                            <div class="fontIcon monthly-price">$9/mo</div>
+                                            <div class="fontIcon yearly-price d-none">$90/yr</div>
+                                            <div class="freeMonths d-none">2 months free</div>
+                                        </div>
+
+                                        <div class="Mode plan-card addOnscolor" data-plan="advanced">
+                                            <img src="./assets/images/icon-advanced.svg" alt="Advance Icon"
+                                                class="icon">
+                                            <div class="price">Advanced</div>
+                                            <div class="fontIcon monthly-price">$12/mo</div>
+                                            <div class="fontIcon yearly-price d-none">$120/yr</div>
+                                            <div class="freeMonths d-none">2 months free</div>
+                                        </div>
+
+                                        <div class="Mode plan-card addOnscolor" data-plan="pro">
+                                            <img src="./assets/images/icon-pro.svg" alt="Pro Icon" class="icon">
+                                            <div class="price">Pro</div>
+                                            <div class="fontIcon monthly-price">$15/mo</div>
+                                            <div class="fontIcon yearly-price d-none">$150/yr</div>
+                                            <div class="freeMonths d-none">2 months free</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row mb-3 gap-3 switchDesgin">
+                                        <div class="p-6" id="monthly-label">Monthly</div>
+                                        <div class="p-6 form-check form-switch switch mx-2 ">
+                                            <input class="form-check-input" style="cursor: pointer;" type="checkbox"
+                                                role="switch" id="billingToggle">
+                                        </div>
+                                        <div class="p-6" id="switchChecked">Yearly</div>
+                                    </div>
+
+                                    <div class="d-md-flex mb-2 btnNext d-none justify-content-between">
+                                        <button class="goBackBtn" data-goback="1">Go Back</button>
+                                        <button class="btnNextDesign" id="desktopNextBtn2">Next Step</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 rightSide d-none" id="sheet3">
+                                <div class="card cardborder">
+                                    <div class="card-body">
+                                        <h3 class="fontHeading">Pick add-ons</h3>
+                                        <p class="spanText">Add-ons help enhance your gaming experience.</p>
+
+                                        <label class="input-group-text mb-2 planselect addon-option">
+                                            <input type="checkbox" class="form-check-input mt-0 addon-checkbox"
+                                                data-addon="online-service" data-monthly="1" data-yearly="10">
+                                            <div class="flex-grow-1 ms-2">
+                                                <div class="fw-bold">Online service</div>
+                                                <small>Access to multiplayer games</small>
+                                            </div>
+                                            <div class="ms-auto monthly-price">+$1/mo</div>
+                                            <div class="ms-auto yearly-price d-none">+$10/yr</div>
+                                        </label>
+
+                                        <label class="input-group-text mb-2 planselect addon-option">
+                                            <input type="checkbox" class="form-check-input mt-0 addon-checkbox"
+                                                data-addon="larger-storage" data-monthly="2" data-yearly="20">
+                                            <div class="flex-grow-1 ms-2 justify-content-start">
+                                                <div class="fw-bold">Larger storage</div>
+                                                <small>Extra 1TB of cloud save</small>
+                                            </div>
+                                            <div class="ms-auto monthly-price">+$2/mo</div>
+                                            <div class="ms-auto yearly-price d-none">+$20/yr</div>
+                                        </label>
+
+                                        <label class="input-group-text mb-2 planselect addon-option">
+                                            <input type="checkbox" class="form-check-input mt-0 addon-checkbox"
+                                                data-addon="custom-profile" data-monthly="2" data-yearly="20">
+                                            <div class="flex-grow-1 ms-2">
+                                                <div class="fw-bold">Customizable Profile</div>
+                                                <small>Custom theme on your profile</small>
+                                            </div>
+                                            <div class="ms-auto monthly-price">+$2/mo</div>
+                                            <div class="ms-auto yearly-price d-none">+$20/yr</div>
+                                        </label>
+
+                                        <div class="d-md-flex mb-2 btnNext d-none justify-content-between">
+                                            <button class="goBackBtn" data-goback="2">Go Back</button>
+                                            <button class="btnNextDesign" id="desktopNextBtn3">Next Step</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 rightSide d-none" id="sheet4">
+                                <div class="card cardborder">
+                                    <h2 class="fontHeading">Finishing up</h2>
+                                    <span class="spanText">
+                                        Double-check everything looks OK before confirming.
+                                    </span>
+
+                                    <div class="animate__animated results">
+                                        <div class="d-flex ">
+                                            <div class="p-2 w-100 resultcolor" id="planName"></div>
+                                            <div class="p-2 flex-shrink-1 resultcolor" id="planPrice"></div>
+                                        </div>
+                                        <div class="addonsContainer" id="addonsContainer">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex total-box total mt-3">
+                                        <div class="p-2 w-100" id="totalLabel">Total (per month)</div>
+                                        <div class="totalamount p-2 flex-shrink-1" id="totalAmount"></div>
+                                    </div>
+
+                                    <div class="d-md-flex mb-2 btnNext d-none justify-content-between">
+                                        <button class="goBackBtn" data-goback="3">Go Back</button>
+                                        <button class="btnNextDesign confirmBtn">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 rightSide d-none" id="sheet5">
+                                <div class="card text-center p-4" style="border: none !important;">
+                                    <div class="card-body submission">
+                                        <img src="./assets/images/icon-thank-you.svg" alt="Thankyou Icon"
+                                            class="mb-3 thankyou">
+                                        <div class="calculated">
+                                            <h1>Thank you!</h1>
+                                        </div>
+
+                                        <p class="spanText">
+                                            Thanks for confirming your subscription! We hope you have fun using our
+                                            platform. If you ever need support, please feel free to email us at
+                                            support@loremgaming.com
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-btn-container">
+            <button class="goBackBtn d-none" id="mobileGoBack">Go Back</button>
+            <button class="btnNextDesign" id="mobileNextBtn">Next Step</button>
+        </div>
+    </div>
+
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const sheets = [
+                document.getElementById("sheet1"),
+                document.getElementById("sheet2"),
+                document.getElementById("sheet3"),
+                document.getElementById("sheet4"),
+                document.getElementById("sheet5")
+            ];
+
+            const stepIndicators = document.querySelectorAll(".step-indicator");
+            const stepButtons = [
+                document.getElementById("desktopStepBtn1"),
+                document.getElementById("desktopStepBtn2"),
+                document.getElementById("desktopStepBtn3"),
+                document.getElementById("desktopStepBtn4"),
+            ];
+
+            const mobileNextBtn = document.getElementById("mobileNextBtn");
+            const mobileGoBackBtn = document.getElementById("mobileGoBack");
+            const desktopNextBtns = [
+                document.getElementById("desktopNextBtn"),
+                document.getElementById("desktopNextBtn2"), 
+                document.getElementById("desktopNextBtn3")
+            ];
+
+            const goBackBtns = document.querySelectorAll(".goBackBtn");
+            const confirmBtn = document.querySelector(".confirmBtn");
+            const billingToggle = document.getElementById("billingToggle");
+
+            const nameInput = document.getElementById("nameinput");
+            const emailInput = document.getElementById("inputEmail1");
+            const phoneInput = document.getElementById("enterPhone");
+            const nameError = document.getElementById("nameError");
+            const emailError = document.getElementById("emailError");
+            const phoneError = document.getElementById("phoneError");
+
+            const planNameEl = document.getElementById("planName");
+            const planPriceEl = document.getElementById("planPrice");
+            const addonsContainer = document.getElementById("addonsContainer");
+            const totalAmountEl = document.getElementById("totalAmount");
+            const totalLabelEl = document.getElementById("totalLabel");
+
+            let currentStep = 1;
+            let isYearly = false;
+            let selectedPlan = null;
+            let selectedAddons = [];
+
+            const plans = {
+                arcade: { name: "Arcade", monthly: 9, yearly: 90 },
+                advanced: { name: "Advanced", monthly: 12, yearly: 120 },
+                pro: { name: "Pro", monthly: 15, yearly: 150 }
+            };
+
+            const addons = {
+                "online-service": { name: "Online service", monthly: 1, yearly: 10 },
+                "larger-storage": { name: "Larger storage", monthly: 2, yearly: 20 },
+                "custom-profile": { name: "Customizable profile", monthly: 2, yearly: 20 }
+            };
+
+
+            
+            function init() {
+                showStep(1);
+                updateStepIndicators();
+                setupEventListeners();
+            }
+
+            function setupEventListeners() {
+
+                stepIndicators.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const step = parseInt(btn.getAttribute("data-step"));
+                        if (step < currentStep) {
+                            showStep(step);
+                        }
+                    });
+                });
+
+
+                mobileNextBtn.addEventListener("click", handleNextStep);
+                mobileGoBackBtn.addEventListener("click", handleGoBack);
+
+                desktopNextBtns.forEach((btn, index) => {
+                    if (btn) {
+                        btn.addEventListener("click", () => {
+                            if (validateStep(index + 1)) {
+                                showStep(index + 2);
+                            }
+                        });
+                    }
+                });
+
+                goBackBtns.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const targetStep = parseInt(btn.getAttribute("data-goback"));
+                        if (!isNaN(targetStep)) {
+                            showStep(targetStep);
+                        }
+                    });
+                });
+
+
+                if (confirmBtn) {
+                    confirmBtn.addEventListener("click", () => {
+                        showStep(5);
+                    });
+                }
+
+                billingToggle.addEventListener("change", function () {
+                    isYearly = this.checked;
+                    updatePricing();
+                    if (currentStep === 4) {
+                        updateSummary();
+                    }
+                });
+
+                document.querySelectorAll(".plan-card").forEach(card => {
+                    card.addEventListener("click", () => {
+                        const planKey = card.getAttribute("data-plan");
+                        selectedPlan = plans[planKey];
+
+                        document.querySelectorAll(".plan-card").forEach(c => {
+                            c.classList.remove("activeAddonscolor");
+                        });
+                        card.classList.add("activeAddonscolor");
+
+                        if (currentStep === 2) {
+                            mobileNextBtn.disabled = false;
+                        }
+                    });
+                });
+
+                document.querySelectorAll(".addon-checkbox").forEach(checkbox => {
+                    checkbox.addEventListener("change", function () {
+                        const addonKey = this.getAttribute("data-addon");
+                        const addon = addons[addonKey];
+
+                        if (this.checked) {
+                            selectedAddons.push(addon);
+                        } else {
+                            selectedAddons = selectedAddons.filter(a => a.name !== addon.name);
+                        }
+
+                        const addonOption = this.closest(".addon-option");
+                        if (this.checked) {
+                            addonOption.classList.add("activePlanselect");
+                        } else {
+                            addonOption.classList.remove("activePlanselect");
+                        }
+
+                        if (currentStep === 4) {
+                            updateSummary();
+                        }
+                    });
+                });
+            }
+
+            function showStep(step) {
+                sheets.forEach(sheet => {
+                    if (sheet) sheet.classList.add("d-none");
+                });
+
+                if (sheets[step - 1]) {
+                    sheets[step - 1].classList.remove("d-none");
+                }
+
+                currentStep = step;
+                updateStepIndicators();
+                updateMobileNavigation();
+
+                if (step === 4) {
+                    updateSummary();
+                }
+            }
+
+            function updateStepIndicators() {
+                stepIndicators.forEach((indicator, index) => {
+                    const step = index + 1;
+                    if (step === currentStep) {
+                        indicator.classList.add("active-step");
+                    } else {
+                        indicator.classList.remove("active-step");
+                    }
+                });
+
+                stepButtons.forEach((indicator, index) => {
+                    const step = index + 1;
+                    if (step === currentStep) {
+                        indicator.classList.add("active-step");
+                    } else {
+                        indicator.classList.remove("active-step");
+                    }
+                });
+            }
+             
+
+            function updateMobileNavigation() {
+                if (currentStep === 4) {
+                    mobileNextBtn.textContent = "Confirm";
+                } else {
+                    mobileNextBtn.textContent = "Next Step";
+                }
+
+                if (currentStep === 1) {
+                    mobileGoBackBtn.classList.add("d-none");
+                } else {
+                    mobileGoBackBtn.classList.remove("d-none");
+                    mobileGoBackBtn.setAttribute("data-goback", currentStep - 1); 
+                }
+            }
+
+
+            function validateStep(step) {
+                switch (step) {
+                    case 1:
+                        return validatePersonalInfo();
+                    case 2:
+                        return selectedPlan !== null;
+                    case 3:
+                    case 4:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+            function validatePersonalInfo() {
+                let isValid = true;
+
+                nameError.classList.add("d-none");
+                emailError.classList.add("d-none");
+                phoneError.classList.add("d-none");
+                nameInput.style.borderColor = "";
+                emailInput.style.borderColor = "";
+                phoneInput.style.borderColor = "";
+
+                if (!nameInput.value.trim()) {
+                    nameError.textContent = "Name is required.";
+                    nameError.classList.remove("d-none");
+                    nameInput.style.borderColor = "red";
+                    isValid = false;
+                } else if (!/^[A-Za-z\s]+$/.test(nameInput.value.trim())) {
+                    nameError.textContent = "Name must contain only alphabets.";
+                    nameError.classList.remove("d-none");
+                    nameInput.style.borderColor = "red";
+                    isValid = false;
+                } else {
+                    nameError.classList.add("d-none");
+                    nameInput.style.borderColor = "";
+                }
+
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                    emailError.classList.remove("d-none");
+                    emailInput.style.borderColor = "red";
+                    isValid = false;
+                }
+
+                const phonenum = /^[0-9]{3,11}$/;
+
+                if (!phoneInput.value.trim() || !phonenum.test(phoneInput.value)) {
+                    phoneError.classList.remove("d-none");
+                    phoneInput.style.borderColor = "red";
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function handleNextStep() {
+                if (validateStep(currentStep)) {
+                    if (currentStep < 4) {
+                        showStep(currentStep + 1);
+                    } else if (currentStep === 4) {
+                        showStep(5);
+                    }
+                }
+            }
+
+            function handleGoBack() {
+                if (currentStep > 1) {
+                    showStep(currentStep - 1);
+                }
+            }
+
+            function updatePricing() {
+                document.querySelectorAll(".monthly-price").forEach(el => {
+                    el.classList.toggle("d-none", isYearly);
+                });
+                document.querySelectorAll(".yearly-price").forEach(el => {
+                    el.classList.toggle("d-none", !isYearly);
+                });
+                document.querySelectorAll(".freeMonths").forEach(el => {
+                    el.classList.toggle("d-none", !isYearly);
+                });
+
+                document.querySelectorAll("#sheet3 .monthly-price").forEach(el => {
+                    el.classList.toggle("d-none", isYearly);
+                });
+                document.querySelectorAll("#sheet3 .yearly-price").forEach(el => {
+                    el.classList.toggle("d-none", !isYearly);
+                });
+            }
+
+            function updateSummary() {
+                if (!selectedPlan) return;
+
+                const period = isYearly ? "yearly" : "monthly";
+                const periodLabel = isYearly ? "yr" : "mo";
+                const planPrice = isYearly ? selectedPlan.yearly : selectedPlan.monthly;
+
+                planNameEl.textContent = `${selectedPlan.name} (${isYearly ? "Yearly" : "Monthly"})`;
+                planPriceEl.textContent = `$${planPrice}/${periodLabel}`;
+
+                addonsContainer.innerHTML = "";
+                let addonsTotal = 0;
+
+                selectedAddons.forEach(addon => {
+                    const addonPrice = isYearly ? addon.yearly : addon.monthly;
+                    addonsTotal += addonPrice;
+
+                    const addonEl = document.createElement("div");
+                    addonEl.className = "d-flex justify-content-between align-items-center mt-2";
+                    addonEl.innerHTML = `
+                        <div class="spanText">${addon.name}</div>
+                        <div class="totalamount">+$${addonPrice}/${periodLabel}</div>
+                    `;
+                    addonsContainer.appendChild(addonEl);
+                });
+
+
+                const total = planPrice + addonsTotal;
+                totalAmountEl.textContent = `$${total}/${periodLabel}`;
+                totalLabelEl.textContent = `Total (per ${isYearly ? "year" : "month"})`;
+            }
+
+            init();
+        });
+    </script>
+</body>
+
+</html>
